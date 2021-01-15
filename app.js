@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyparser = require('body-parser');
 const mongoose = require("mongoose");
+const cors=require('cors');
 const app = express();
 require('dotenv/config');
 mongoose.connect(
@@ -23,7 +24,7 @@ const model = mongoose.model("MusicList", songschema);
 
 
 app.use(bodyparser.json());
-
+app.use(cors());
 app.get('/', async (req, res) => {
   try {
     const data = await model.find();
